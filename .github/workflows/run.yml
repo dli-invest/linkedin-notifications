@@ -31,7 +31,9 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Run Script for news and halts
-        run: python scrap.py
+        run: |
+          python api_login.py
+          python scrap.py
 
       - uses: sarisia/actions-status-discord@v1
         if: failure()
