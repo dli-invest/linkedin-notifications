@@ -28,11 +28,11 @@ jobs:
       
       - name: Install
         run: |
-          pip install -r requirements.txt
+          python3 -m pip install -r requirements.txt
       - name: Run Script for news and halts
         run: |
-          python api_login.py
-          python scrap.py
+          python3 api_login.py
+          python3 scrap.py
 
       - uses: sarisia/actions-status-discord@v1
         if: failure()
