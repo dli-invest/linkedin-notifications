@@ -15,7 +15,7 @@ env:
 
 jobs:
   fetch:
-    runs-on: self-hosted
+    runs-on: [self-hosted, gcp]
     steps:
       - uses: actions/checkout@v2
         with:
