@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 import json
 import os
 import time
+import sys
 # Authenticate using any Linkedin account credentials
 email = os.environ.get("LINKEDIN_EMAIL")
 password = os.environ.get("LINKEDIN_PASSWORD")
@@ -59,7 +60,7 @@ def loop_for_company(company: str):
 
             relativeDate = dateparser.parse(cleanText)
             now = datetime.now()
-            if now-timedelta(hours=24*5) <= relativeDate <= now:
+            if now-timedelta(hours=24*1) <= relativeDate <= now:
                 actions = update["value"]["com.linkedin.voyager.feed.render.UpdateV2"]["updateMetadata"]["actions"]
                 url = "https://www.linkedin.com/company/peakfintech/"
                 for action in actions:
@@ -79,8 +80,5 @@ def loop_for_company(company: str):
             print(e)
 
 companies = ['datacm', 'arht-media-inc-', 'peakfintech']
+company = sys.argv[0]
 loop_for_company("peakfintech")
-
-loop_for_company('arht-media-inc-')
-
-loop_for_company('datacm')
