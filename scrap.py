@@ -64,8 +64,8 @@ for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
                         url = action.get('url')
                         break
                 embeds = [{
-                    "title": f"{company} - cleanText",
-                    "description": annotation,
+                    "title": f"{company} - ${cleanText}",
+                    "description": commentary,
                     "url": url
                 }]
                 post_webhook_content(webhook, embeds)
