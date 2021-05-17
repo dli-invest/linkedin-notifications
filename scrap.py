@@ -45,6 +45,7 @@ def clean(str):
 
 print("LOOKING FOR UPDATES")
 for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
+    print("CURRENT COMPANY")
     updates = api.get_company_updates(company, None, 10)
     # get income
     for update in updates:
@@ -74,3 +75,4 @@ for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
                 break
         except Exception as e:
             print(e)
+    updates = []
