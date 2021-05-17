@@ -44,8 +44,10 @@ def clean(str):
         return None
 
 print("LOOKING FOR UPDATES")
-for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
+companies = ['datacm', 'arht-media-inc-', 'peakfintech']
+for company in companies:
     print("CURRENT COMPANY")
+    print(company)
     updates = api.get_company_updates(company, None, 10)
     # get income
     for update in updates:
@@ -65,7 +67,7 @@ for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
                         url = action.get('url')
                         break
                 embeds = [{
-                    "title": f"{company} - ${cleanText}",
+                    "title": f"{company} - {cleanText}",
                     "description": commentary,
                     "url": url
                 }]
