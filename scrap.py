@@ -60,7 +60,7 @@ def loop_for_company(company: str):
 
             relativeDate = dateparser.parse(cleanText)
             now = datetime.now()
-            if now-timedelta(hours=24*1) <= relativeDate <= now:
+            if now-timedelta(hours=24*5) <= relativeDate <= now:
                 actions = update["value"]["com.linkedin.voyager.feed.render.UpdateV2"]["updateMetadata"]["actions"]
                 url = "https://www.linkedin.com/company/peakfintech/"
                 for action in actions:
