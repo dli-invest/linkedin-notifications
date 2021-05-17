@@ -14,7 +14,7 @@ env:
   LINKEDIN_PASSWORD: ${{ SECRETS.LINKEDIN_PASSWORD }}
 
 jobs:
-  fetch:
+  linkedin:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
           python3 -m pip install -r requirements.txt
       - name: Run Script for news and halts
         run: |
-          python3 api_login.py
+          # python3 api_login.py
           python3 scrap.py
 
       - uses: sarisia/actions-status-discord@v1
