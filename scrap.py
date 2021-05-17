@@ -16,11 +16,11 @@ if email is None or password is None:
 api = Linkedin(email, password)
 
 
-def post_webhook_content(url: str, content: str):
+def post_webhook_content(url: str, embeds: list):
     url = url
     data = {}
     # for all params, see https://discordapp.com/developers/docs/resources/webhook#execute-webhook
-    data["content"] = content
+    data["embeds"] = embeds
 
     result = requests.post(
         url, data=json.dumps(data), headers={"Content-Type": "application/json"}
@@ -57,10 +57,19 @@ for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
             relativeDate = dateparser.parse(cleanText)
             now = datetime.now()
             if now-timedelta(hours=24*16) <= relativeDate <= now:
-                print(relativeDate)
-                print(cleanText)
-                post_webhook_content(webhook, cleanText)
-                time.sleep(2 )
+                actions = update["value"]["com.linkedin.voyager.feed.render.UpdateV2"]["updateMetadata"]["actions"]
+                url = "https://www.linkedin.com/company/peakfintech/"
+                for action in actions:
+                    if action.get('url') != None:
+                        url = action.get('url')
+                        break
+                embeds = [{
+                    "title": f"{company} - cleanText",
+                    "description": annotation,
+                    "url": url
+                }]
+                post_webhook_content(webhook, embeds)
+                time.sleep(2)
             else:
                 break
         except Exception as e:
