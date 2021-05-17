@@ -80,5 +80,5 @@ def loop_for_company(company: str):
             print(e)
 
 companies = ['datacm', 'arht-media-inc-', 'peakfintech']
-company = sys.argv[0]
+company = sys.argv[1]
 loop_for_company(company)
