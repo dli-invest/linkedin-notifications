@@ -5,11 +5,13 @@ import re
 from datetime import datetime, timedelta
 import json
 import os
+import time
 # Authenticate using any Linkedin account credentials
 email = os.environ.get("LINKEDIN_EMAIL")
 password = os.environ.get("LINKEDIN_PASSWORD")
 webhook = os.environ.get("DISCORD_WEBHOOK")
 if email is None or password is None:
+    print("SOME MESSAGE GOES HERE")
     exit("Failed to get app credentials")
 api = Linkedin(email, password)
 
@@ -41,7 +43,7 @@ def clean(str):
     else:
         return None
 
-
+print("LOOKING FOR UPDATES")
 for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
     updates = api.get_company_updates(company, None, 10)
     # get income
@@ -54,10 +56,11 @@ for company in ['datacm', 'arht-media-inc-', 'peakfintech']:
 
             relativeDate = dateparser.parse(cleanText)
             now = datetime.now()
-            if now-timedelta(hours=24*3) <= relativeDate <= now:
+            if now-timedelta(hours=24*16) <= relativeDate <= now:
                 print(relativeDate)
                 print(cleanText)
                 post_webhook_content(webhook, cleanText)
+                time.sleep(2 )
             else:
                 break
         except Exception as e:

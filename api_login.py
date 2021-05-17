@@ -46,3 +46,4 @@ if __name__ == '__main__':
     email = os.environ.get("LINKEDIN_EMAIL")
     password = os.environ.get("LINKEDIN_PASSWORD")
     login(email, password)
+    print("DOING THE LOGIN")
