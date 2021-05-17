@@ -44,7 +44,6 @@ def clean(str):
         return None
 
 print("LOOKING FOR UPDATES")
-companies = ['datacm', 'arht-media-inc-', 'peakfintech']
 
 def loop_for_company(company: str):
     print("CURRENT COMPANY")
@@ -79,5 +78,9 @@ def loop_for_company(company: str):
         except Exception as e:
             print(e)
 
-for company in companies:
-    loop_for_company(company)
+companies = ['datacm', 'arht-media-inc-', 'peakfintech']
+loop_for_company("peakfintech")
+
+loop_for_company('arht-media-inc-')
+
+loop_for_company('datacm')
